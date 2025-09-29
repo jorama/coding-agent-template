@@ -193,20 +193,26 @@ export function AppLayout({ children, initialSidebarWidth, initialSidebarOpen }:
   }) => {
     const id = nanoid()
     const optimisticTask: Task = {
-      id,
-      prompt: taskData.prompt,
-      repoUrl: taskData.repoUrl,
-      selectedAgent: taskData.selectedAgent,
-      selectedModel: taskData.selectedModel,
-      status: 'pending',
-      progress: 0,
-      logs: [],
-      error: null,
-      branchName: null,
-      sandboxUrl: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      completedAt: null,
+  id,
+  prompt: taskData.prompt,
+  repoUrl: taskData.repoUrl ?? null,
+  selectedAgent: taskData.selectedAgent ?? null,
+  selectedModel: taskData.selectedModel ?? null,
+
+  // ✅ added missing required fields
+  installDependencies: null,
+  maxDuration: null,
+
+  status: 'pending',
+  progress: 0,
+  logs: [],
+  error: null,
+  branchName: null,
+  sandboxUrl: null,
+
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  completedAt: null,
     }
 
     // Add the optimistic task to the beginning of the tasks array
